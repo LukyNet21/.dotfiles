@@ -1,0 +1,7 @@
+[init]
+	defaultBranch = main
+[user]
+	email = 98685127+LukyNet21@users.noreply.github.com
+	name = lukynet
+[core]
+	editor = nvim
