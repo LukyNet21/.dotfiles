@@ -57,6 +57,7 @@ alias c='clear'
 alias e='nvim'
 alias proj='~/.dotfiles/scripts/project_manager.sh'
 alias mkproj='~/.dotfiles/scripts/create_project.sh'
+alias sess='~/.dotfiles/scripts/open_session.sh'
 
 # Integrations
 source <(fzf --zsh)

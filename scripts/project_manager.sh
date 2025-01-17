@@ -22,7 +22,6 @@ else
     tmux send-keys -t "$project_name:1" 'nvim .' C-m
 
     tmux new-window -t "$project_name:2" -n 'zsh' -c "$selected"
-    tmux send-keys -t "$project_name:2" 'zsh' C-m
 
     tmux new-window -t "$project_name:3" -n 'lazygit' -c "$selected"
     tmux send-keys -t "$project_name:3" 'lazygit' C-m
