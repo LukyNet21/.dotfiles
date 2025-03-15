@@ -56,7 +56,9 @@ alias ls='ls --color'
 alias c='clear'
 alias proj='~/.dotfiles/scripts/project_manager.sh'
 alias mkproj='~/.dotfiles/scripts/create_project.sh'
-alias sess='~/.dotfiles/scripts/open_session.sh'
+alias session='~/.dotfiles/scripts/open_session.sh'
+alias ssh='TERM=xterm-256color ssh'
+alias vim='nvim'
 
 # Integrations
 source <(fzf --zsh)

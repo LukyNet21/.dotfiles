@@ -1,8 +1,7 @@
 @import "mocha.css"; 
 
-
 * {
-    font-family: "JetBranis Mono Bold";
+    font-family: "JetBrainsMono Nerd Font";
     font-size: 16px;
     min-height: 0;
     font-weight: bold;
@@ -68,7 +67,8 @@ button:hover {
 #mode,
 #scratchpad,
 #custom-power,
-#custom-notification {
+#custom-notification,
+#power-profiles-daemon {
     margin: 2px 5px;
     padding: 0 4px;
 }
@@ -91,6 +91,11 @@ button:hover {
 #battery {
     color: @green;
     border-bottom: 2px solid @green;
+}
+
+#backlight {
+    color: @yellow;
+    border-bottom: 2px solid @yellow;
 }
 
 #cpu {

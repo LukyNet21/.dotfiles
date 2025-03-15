@@ -13,7 +13,12 @@ project_name=$(basename "$selected")
 
 if tmux has-session -t "$project_name" 2>/dev/null; then
     echo "Attaching to existing tmux session: $project_name"
-    tmux attach-session -t "$project_name"
+    if [ -n "$TMUX" ]; then
+        tmux switch-client -t "$project_name"
+    else
+        tmux attach-session -t "$project_name"
+    fi 
+    # tmux attach-session -t "$project_name"
 else
     echo "Creating new tmux session: $project_name"
     tmux new-session -d -s "$project_name" -c "$selected"
@@ -26,6 +31,11 @@ else
     tmux new-window -t "$project_name:3" -n 'lazygit' -c "$selected"
     tmux send-keys -t "$project_name:3" 'lazygit' C-m
 
-    tmux attach-session -t "$project_name:1"
+    if [ -n "$TMUX" ]; then
+        tmux switch-client -t "$project_name"
+    else
+        tmux attach-session -t "$project_name:1"
+    fi
+    # tmux attach-session -t "$project_name:1"
 fi
 
