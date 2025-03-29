@@ -52,7 +52,7 @@
     "tooltip-format": "{time}"
   },
   "power-profiles-daemon": {
-    "format": "<span size='13000'>{icon}</span>",
+    "format": "<span size='13000'>{icon} </span>",
     "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
     "tooltip": true,
     "format-icons": {
