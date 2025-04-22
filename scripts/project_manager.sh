@@ -2,40 +2,21 @@
 
 PROJECT_DIR=~/projects
 
-selected=$(find "$PROJECT_DIR" -maxdepth 1 -type d | fzf --prompt="Select a project: ")
-
-if [ -z "$selected" ]; then
-    echo "No project selected."
-    exit 1
-fi
-
-project_name=$(basename "$selected")
-
-if tmux has-session -t "$project_name" 2>/dev/null; then
-    echo "Attaching to existing tmux session: $project_name"
-    if [ -n "$TMUX" ]; then
-        tmux switch-client -t "$project_name"
-    else
-        tmux attach-session -t "$project_name"
-    fi 
-    # tmux attach-session -t "$project_name"
-else
-    echo "Creating new tmux session: $project_name"
-    tmux new-session -d -s "$project_name" -c "$selected"
-
-    tmux rename-window -t "$project_name:1" 'nvim'
-    tmux send-keys -t "$project_name:1" 'nvim .' C-m
-
-    tmux new-window -t "$project_name:2" -n 'zsh' -c "$selected"
-
-    tmux new-window -t "$project_name:3" -n 'lazygit' -c "$selected"
-    tmux send-keys -t "$project_name:3" 'lazygit' C-m
-
-    if [ -n "$TMUX" ]; then
-        tmux switch-client -t "$project_name"
-    else
-        tmux attach-session -t "$project_name:1"
+if [ -n "$1" ]; then
+    project_name="$1"
+    selected="$PROJECT_DIR/$project_name"
+    if [ ! -d "$selected" ]; then
+        echo "Error: '$project_name' not found in $PROJECT_DIR"
+        exit 1
     fi
-    # tmux attach-session -t "$project_name:1"
+else
+    selected=$(find "$PROJECT_DIR" -maxdepth 1 -mindepth 1 -type d | fzf --prompt="Select a project: ")
+    if [ -z "$selected" ]; then
+        echo "No project selected."
+        exit 1
+    fi
+    project_name=$(basename "$selected")
 fi
+
+exec "$(dirname "${BASH_SOURCE[0]}")/open_session.sh" "$selected" "$project_name"
 

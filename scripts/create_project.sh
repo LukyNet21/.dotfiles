@@ -37,6 +37,7 @@ echo "# $project_name" > README.md
 cat <<EOL > .gitignore
 # Environment variables
 .env
+.vscode/
 
 EOL
 
