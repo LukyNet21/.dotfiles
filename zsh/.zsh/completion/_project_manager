@@ -1,0 +1,11 @@
+#compdef project_manager.sh project_manager
+
+local projects
+projects=( ${(f)"$(find ~/projects -maxdepth 1 -mindepth 1 -type d -printf '%f\n')"} )
+
+_arguments \
+  '1:project_name:->proj' && return 0
+
+if [[ $state == proj ]]; then
+  _values 'project_name' ${projects[@]}
+fi
