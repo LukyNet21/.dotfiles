@@ -1,0 +1,9 @@
+#compdef open_session.sh
+
+_open_session() {
+  _arguments \
+    '1:directory:_path_files -/' \
+    '2:session name:'
+}
+
+_open_session "$@"
