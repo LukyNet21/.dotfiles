@@ -1,0 +1,116 @@
+* {
+    background: rgba(0,0,1,0.5);
+    foreground: #FFFFFF;
+    color1:      #89DCEB66;
+}
+
+* { border-width: 3px; }
+
+configuration {
+    font:                       "JetBrains Mono";
+    show-icons:                 true;
+  	hover-select:               false;
+    scroll-method:              1;
+    drun-display-format:        "{name}";
+    window-format:              "{w} · {c} · {t}";
+}
+
+window {
+    width:                        600px;
+    y-offset:                     65px;
+    color:                        #FFFFFF;
+    border:                       @border-width;
+    border-color:                 #FFFFFF;
+    border-radius:                10px;
+    background-color:             transparent;
+}
+
+inputbar {
+    text-color:                   @foreground;
+    spacing:                      10px;
+    padding:                      15px;
+    background-color:             @background;
+    children:                     [ "textbox-prompt-colon", "entry" ];
+}
+
+textbox-prompt-colon {
+    padding:                      0px 5px 0px 0px;
+    str:                          "";
+    background-color:             transparent;
+    text-color:                   inherit;
+}
+
+entry {
+    text-color:                   inherit;
+    placeholder:                  "Search";
+    placeholder-color:            inherit;
+}
+
+listview {
+    enabled:                      true;
+    columns:                      1;
+    lines:                        8;
+    scrollbar:                    false;
+    layout:                       vertical;
+    background-color:             @background;
+    border:0px;
+}
+
+element {
+    enabled:                      true;
+    padding:                      10px;
+    margin:                       5px;
+    background-color:             @background;
+    border-radius:                10px;
+    border:                       @border-width;
+}
+
+element normal.normal {
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+
+element normal.urgent {
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+
+element normal.active {
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+
+element selected.normal {
+    background-color:            @color1;
+    text-color:                  @foreground;
+}
+
+element selected.urgent {
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+
+element selected.active {
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+
+element alternate.normal {
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+
+element alternate.urgent {
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+
+element alternate.active {
+    background-color:            inherit;
+    text-color:                  @foreground;
+}
+
+element-icon {
+    background-color:            transparent;
+    size:                        32px;
+}
