@@ -34,6 +34,7 @@ official_packages=(
 # List of AUR packages to install
 aur_packages=(
   wlogout
+  oh-my-posh
 )
 
 # List of Flatpak apps to install
