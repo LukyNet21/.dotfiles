@@ -66,6 +66,10 @@
                     "command": "blueman-manager"
                 },
                 {
+                    "label": "󰤨",
+                    "command": "nm-connection-editor"
+                },
+                {
                     "label": "",
                     "command": "wlogout"
                 }

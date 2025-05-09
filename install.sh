@@ -27,11 +27,23 @@ official_packages=(
   lazygit
   pavucontrol
   brightnessctl
+  nwg-look
+  flatpak
 )
 
 # List of AUR packages to install
 aur_packages=(
   wlogout
+)
+
+# List of Flatpak apps to install
+flatpak_apps=(
+  org.kde.ark
+  org.gnome.clocks
+  org.gnome.Calculator
+  org.gnome.Characters
+  org.kde.kwrite
+  org.videolan.VLC
 )
 
 # Function to install yay if it's not already installed
@@ -68,6 +80,15 @@ for pkg in "${aur_packages[@]}"; do
     echo "$pkg is already installed (AUR)."
   else
     yay -S --noconfirm "$pkg"
+  fi
+done
+
+echo "Installing Flatpak apps: ${flatpak_apps[*]}"
+for app in "${flatpak_apps[@]}"; do
+  if flatpak info "$app" &>/dev/null; then
+    echo "$app is already installed (Flatpak)."
+  else
+    flatpak install --assumeyes "$app"
   fi
 done
 
