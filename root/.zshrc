@@ -62,3 +62,6 @@ export NVM_DIR="$HOME/.nvm"
 fpath=(~/.zsh/completion $fpath)
 autoload -U compinit
 compinit
+
+# Setup zoxide
+eval "$(zoxide init zsh --cmd cd)"

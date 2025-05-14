@@ -29,12 +29,14 @@ official_packages=(
   brightnessctl
   nwg-look
   flatpak
+  zoxide
 )
 
 # List of AUR packages to install
 aur_packages=(
   wlogout
   oh-my-posh
+  visual-studio-code-bin
 )
 
 # List of Flatpak apps to install
