@@ -33,7 +33,13 @@ session_name=$(sanitize_session_name "$session_name_raw")
 
 if tmux has-session -t "$session_name" 2>/dev/null; then
     echo "Attaching to existing tmux session: $session_name"
-    tmux attach-session -t "$session_name"
+    if [ -n "$TMUX" ]; then
+        echo "Switching tmux client to: $session_name"
+        tmux switch-client -t "$session_name"
+    else
+        echo "Attaching to: $session_name"
+        tmux attach-session -t "$session_name"
+    fi
 else
     echo "Creating new tmux session: $session_name"
     tmux new-session -d -s "$session_name" -c "$working_dir"
@@ -45,6 +51,10 @@ else
     tmux new-window -t "$session_name:3" -n 'lazygit' -c "$working_dir"
     tmux send-keys    -t "$session_name:3" 'lazygit' C-m
 
-    tmux attach-session -t "$session_name:1"
+    if [ -n "$TMUX" ]; then
+        tmux switch-client -t "$session_name:1"
+    else
+        tmux attach-session -t "$session_name:1"
+    fi
 fi
 
