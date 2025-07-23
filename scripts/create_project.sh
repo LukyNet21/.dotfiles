@@ -9,7 +9,11 @@ urlify() {
             -e 's/-$//'
 }
 
-read -p "Enter the project name: " project_name
+if [ -n "$1" ]; then
+    project_name="$1"
+else
+    read -p "Enter the project name: " project_name
+fi
 project_dir=$(urlify "$project_name")
 base_dir=~/projects
 project_path="$base_dir/$project_dir"
