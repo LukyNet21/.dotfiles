@@ -8,6 +8,23 @@ Personal configuration files for various tools and environments:
 - **scripts** Helper shell scripts (project manager, session opener, project initializer)  
 - **root** Global dotfiles (`.zshrc`, Powerlevel10k, `.gitconfig`)  
 
+## Installation
+
+Clone the repository including all submodules:
+
+```sh
+git clone --recursive https://github.com/LukyNet21/.dotfiles.git ~/.dotfiles
+```
+
+## Requirements:
+ - zsh:
+   - oh-my-posh
+   - zoxide
+   - fzf
+ - tmux:
+   - Tmux Plugin Manager
+
+
 ## Usage
 
 - `proj` → run [scripts/project_manager.sh](scripts/project_manager.sh)  
