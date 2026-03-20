@@ -5,6 +5,8 @@ if [ ! -d "$ZINIT_HOME" ]; then
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
+ssh-add --apple-load-keychain -q
+
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Plugins
@@ -15,7 +17,6 @@ zinit light Aloxaf/fzf-tab
 
 autoload -Uz compinit && compinit
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/.omp.toml)"
 
 # Keybidns
@@ -49,15 +50,10 @@ alias c='clear'
 alias proj='~/.dotfiles/scripts/project_manager.sh'
 alias mkproj='~/.dotfiles/scripts/create_project.sh'
 alias session='~/.dotfiles/scripts/open_session.sh'
-alias ssh='TERM=xterm-256color ssh'
 alias vim='nvim'
 
 # Integrations
 source <(fzf --zsh)
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 fpath=(~/.zsh/completion $fpath)
 autoload -U compinit
@@ -73,10 +69,3 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
-GOBIN_PATH="$(go env GOPATH)/bin"
-case ":$PATH:" in
-  *":$GOBIN_PATH:"*) ;;
-  *) export PATH="$PATH:$GOBIN_PATH" ;;
-esac
-
