@@ -9,10 +9,24 @@ sanitize_session_name() {
             -e 's/-$//'
 }
 
+resolve_dir() {
+    if [ -z "$1" ]; then
+        return 1
+    fi
+
+    if ! [ -d "$1" ]; then
+        return 1
+    fi
+
+    (
+        cd "$1" 2>/dev/null && pwd -P
+    )
+}
+
 if [ -n "$1" ]; then
-    working_dir=$(realpath "$1")
-    if [ ! -d "$working_dir" ]; then
-        echo "Error: Directory '$working_dir' does not exist."
+    working_dir=$(resolve_dir "$1")
+    if [ -z "$working_dir" ]; then
+        echo "Error: Directory '$1' does not exist."
         exit 1
     fi
 else
@@ -57,4 +71,3 @@ else
         tmux attach-session -t "$session_name:1"
     fi
 fi
-

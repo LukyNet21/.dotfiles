@@ -15,7 +15,9 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
-autoload -Uz compinit && compinit
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit
+compinit
 
 eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/.omp.toml)"
 
@@ -55,17 +57,22 @@ alias vim='nvim'
 # Integrations
 source <(fzf --zsh)
 
-fpath=(~/.zsh/completion $fpath)
-autoload -U compinit
-compinit
-
 # Setup zoxide
 eval "$(zoxide init zsh --cmd cd)"
 
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 # pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
+export PNPM_HOME="${HOME}/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+GOBIN_PATH="$(go env GOPATH)/bin"
+case ":$PATH:" in
+  *":$GOBIN_PATH:"*) ;;
+  *) export PATH="$PATH:$GOBIN_PATH" ;;
+esac

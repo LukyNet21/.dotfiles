@@ -1,7 +1,13 @@
 #compdef project_manager.sh project_manager
 
 local projects
-projects=( ${(f)"$(find ~/projects -maxdepth 1 -mindepth 1 -type d -printf '%f\n')"} )
+local project_root=~/projects
+
+if [[ -d $project_root ]]; then
+  projects=( ${project_root}/*(/N:t) )
+else
+  projects=()
+fi
 
 _arguments \
   '1:project_name:->proj' && return 0
